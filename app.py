@@ -6,17 +6,6 @@ from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
-# Import transformers and torch for the free LLM solution (if using DialoGPT)
-from transformers import AutoModelForCausalLM, AutoTokenizer
-import torch
-
-# Load DialoGPT model and tokenizer (if you're using the free alternative)
-tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-medium")
-dialogue_model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-medium")
-
-fine_tuned_tokenizer = AutoTokenizer.from_pretrained("./finance_chat_model")
-fine_tuned_model = AutoModelForCausalLM.from_pretrained("./finance_chat_model")
-
 app = Flask(__name__)
 app.config.from_object(Config)
 
