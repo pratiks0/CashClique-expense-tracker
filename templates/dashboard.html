@@ -1,0 +1,329 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard-container">
+  <div class="dashboard-box">
+    <h2 class="dashboard-title">Dashboard</h2>
+    
+    <!-- Minimalist Totals Section -->
+    <div class="card-container">
+      <div class="dashboard-card">
+        <div class="card-header">Total Income</div>
+        <div class="card-body">
+          <h5 class="card-value">₹{{ total_income }}</h5>
+        </div>
+      </div>
+      <div class="dashboard-card">
+        <div class="card-header">Total Expenses</div>
+        <div class="card-body">
+          <h5 class="card-value">₹{{ total_expense }}</h5>
+        </div>
+      </div>
+      <div class="dashboard-card">
+        <div class="card-header">Balance</div>
+        <div class="card-body">
+          <h5 class="card-value">₹{{ balance }}</h5>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="action-buttons" style="text-align: center; margin-bottom: 1.5rem;">
+      <a href="{{ url_for('add_income') }}" class="btn btn-success" style="margin-right: 10px;">Add Income</a>
+      <a href="{{ url_for('add_expense') }}" class="btn btn-primary" style="margin-right: 10px;">Add Expenses</a>
+    </div>
+    
+    <!-- Reset Button -->
+    <div class="reset-container">
+      <form action="{{ url_for('reset') }}" method="POST">
+        <button type="submit" class="btn btn-reset">Reset All Income and Expenses</button>
+      </form>
+    </div>
+    
+    <!-- Chart Section -->
+    <div class="chart-container">
+      <canvas id="expenseChart"></canvas>
+    </div>
+    
+    <!-- Expenses Table -->
+    <div class="expenses-container">
+      <h3>Expenses</h3>
+      <table class="expenses-table">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for expense in expenses %}
+          <tr>
+            <td>{{ expense.raw_text }}</td>
+            <td>{{ expense.category }}</td>
+            <td>₹{{ expense.amount }}</td>
+            <td>{{ expense.timestamp.strftime('%Y-%m-%d') }}</td>
+            <td>
+              <form action="{{ url_for('delete_expense', expense_id=expense.id) }}" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-delete">Delete</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</div>
+
+<!-- Background elements for subtle visual interest -->
+<div class="bg-shape shape-1"></div>
+<div class="bg-shape shape-2"></div>
+<div class="bg-shape shape-3"></div>
+
+<style>
+  /* Minimalist Container and Box */
+  .dashboard-container {
+    background: #f8f9fa;
+    min-height: 88vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 2rem 1rem;
+  }
+  
+  .dashboard-box {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 10;
+    border: 1px solid #e0e0e0;
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .dashboard-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+  
+  /* Minimalist Totals Cards */
+  .card-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .dashboard-card {
+    flex: 1;
+    min-width: 250px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease;
+  }
+  
+  .dashboard-card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .card-header {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #666;
+  }
+  
+  .card-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+  }
+  
+  /* Reset Button */
+  .reset-container {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .btn-reset {
+    background: #dc3545;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .btn-reset:hover {
+    background: #c82333;
+  }
+  
+  /* Chart Section */
+  .chart-container {
+    margin: 2rem auto;
+    max-width: 800px;
+  }
+  
+  /* Expenses Table */
+  .expenses-container {
+    margin-top: 2rem;
+  }
+  
+  .expenses-container h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .expenses-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  
+  .expenses-table th, .expenses-table td {
+    padding: 0.75rem;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+  }
+  
+  .btn-delete {
+    background: #dc3545;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .btn-delete:hover {
+    background: #c82333;
+  }
+  
+  /* Minimalist Decorative Background Shapes */
+  .bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.2;
+    z-index: 1;
+    filter: blur(30px);
+  }
+  
+  .shape-1 {
+    background: #ced4da;
+    width: 200px;
+    height: 200px;
+    top: -50px;
+    right: 10%;
+  }
+  
+  .shape-2 {
+    background: #ced4da;
+    width: 150px;
+    height: 150px;
+    bottom: -50px;
+    left: 10%;
+  }
+  
+  .shape-3 {
+    background: #ced4da;
+    width: 100px;
+    height: 100px;
+    top: 40%;
+    left: 80%;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 576px) {
+    .dashboard-box {
+      padding: 1.5rem;
+    }
+    
+    .dashboard-title {
+      font-size: 1.5rem;
+    }
+    
+    .card-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<!-- Load Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Parse Jinja variables into JavaScript arrays
+  var labels = JSON.parse('{{ category_totals.keys() | list | tojson | safe }}');
+  var datasetData = JSON.parse('{{ category_totals.values() | list | tojson | safe }}');
+
+  // Predefined colors for different categories
+  var baseColors = [
+      'rgba(99, 132, 255, 0.6)',
+      'rgba(54, 162, 235, 0.6)',
+      'rgba(255, 206, 86, 0.6)',
+      'rgba(75, 192, 192, 0.6)',
+      'rgba(153, 102, 255, 0.6)',
+      'rgba(255, 159, 64, 0.6)'
+  ];
+
+  var colors = labels.map(function(label, index) {
+      return baseColors[index % baseColors.length];
+  });
+
+  var data = {
+    labels: labels,
+    datasets: [{
+      label: 'Expense Amount',
+      data: datasetData,
+      backgroundColor: colors,
+      borderColor: colors.map(function(c) {
+          return c.replace('0.6', '1');
+      }),
+      borderWidth: 1
+    }]
+  };
+
+  var ctx = document.getElementById('expenseChart').getContext('2d');
+  var expenseChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form-container">
+  <div class="form-box">
+    <div class="header-icon">
+      <i class="fas fa-plus-circle"></i>
+    </div>
+    <h2>Add Income</h2>
+    <p class="subtitle">Record your earnings to track your financial progress</p>
+    
+    <form method="POST" action="" class="custom-form">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        {{ form.amount.label(class="form-control-label") }}
+        <div class="input-wrapper">
+          <i class="fas input-icon">₹</i>
+          {{ form.amount(class="form-control", placeholder="Enter income amount") }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form.description.label(class="form-control-label") }}
+        <div class="input-wrapper textarea-wrapper">
+          <i class="fas fa-align-left input-icon textarea-icon"></i>
+          {{ form.description(class="form-control", placeholder="Optional: Enter a description", rows=3) }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form.submit(class="btn btn-success btn-block") }}
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Background elements for subtle visual interest -->
+<div class="bg-shape shape-1"></div>
+<div class="bg-shape shape-2"></div>
+<div class="bg-shape shape-3"></div>
+
+<style>
+  .form-container {
+    background: #f8f9fa;
+    min-height: 88vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 1rem;
+  }
+  
+  .form-box {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 10;
+    border: 1px solid #e0e0e0;
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .header-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .header-icon i {
+    font-size: 3rem;
+    color: #007bff;
+    background: rgba(0, 123, 255, 0.1);
+    border-radius: 50%;
+    padding: 0.8rem;
+  }
+  
+  .form-box h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .subtitle {
+    color: #666;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .custom-form {
+    margin-top: 1rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-control-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95rem;
+  }
+  
+  .input-wrapper {
+    position: relative;
+  }
+  
+  .input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 1rem;
+  }
+  
+  .textarea-icon {
+    top: 1.5rem;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    background-color: #fff;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  }
+  
+  .btn-success {
+    background: #007bff;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .btn-success:hover {
+    background: #0069d9;
+  }
+  
+  /* Decorative background shapes */
+  .bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.2;
+    z-index: 1;
+    filter: blur(30px);
+  }
+  
+  .shape-1 {
+    background: #ced4da;
+    width: 200px;
+    height: 200px;
+    top: -50px;
+    right: 10%;
+  }
+  
+  .shape-2 {
+    background: #ced4da;
+    width: 150px;
+    height: 150px;
+    bottom: -50px;
+    left: 10%;
+  }
+  
+  .shape-3 {
+    background: #ced4da;
+    width: 100px;
+    height: 100px;
+    top: 40%;
+    left: 80%;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 576px) {
+    .form-box {
+      padding: 1.5rem;
+    }
+    
+    .form-box h2 {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}

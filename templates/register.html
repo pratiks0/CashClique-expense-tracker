@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="register-container">
+  <div class="register-box">
+    <h2>Create Account</h2>
+    <p class="subtitle">Join us to start tracking your finances</p>
+    
+    <form method="POST" action="" class="register-form">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        {{ form.username.label(class="form-control-label") }}
+        <div class="input-wrapper">
+          <i class="fas fa-user input-icon"></i>
+          {{ form.username(class="form-control", placeholder="Choose a username") }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form.email.label(class="form-control-label") }}
+        <div class="input-wrapper">
+          <i class="fas fa-envelope input-icon"></i>
+          {{ form.email(class="form-control", placeholder="Enter your email address") }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form.password.label(class="form-control-label") }}
+        <div class="input-wrapper">
+          <i class="fas fa-lock input-icon"></i>
+          {{ form.password(class="form-control", placeholder="Create a strong password") }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form.confirm_password.label(class="form-control-label") }}
+        <div class="input-wrapper">
+          <i class="fas fa-check-circle input-icon"></i>
+          {{ form.confirm_password(class="form-control", placeholder="Confirm your password") }}
+        </div>
+      </div>
+      {{ form.submit(class="btn btn-primary btn-block") }}
+    </form>
+    
+    <div class="register-footer">
+      <p>Already have an account? <a href="{{ url_for('login') }}" class="login-link">Login now</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- Minimalist Background Shapes -->
+<div class="bg-shape shape-1"></div>
+<div class="bg-shape shape-2"></div>
+<div class="bg-shape shape-3"></div>
+
+<style>
+  .register-container {
+    background: #f8f9fa;
+    min-height: 88vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 1rem;
+  }
+  
+  .register-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 10;
+    border: 1px solid #e0e0e0;
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .register-box h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .subtitle {
+    color: #555;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .register-form {
+    margin-top: 1rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-control-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95rem;
+  }
+  
+  .input-wrapper {
+    position: relative;
+  }
+  
+  .input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 1rem;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    font-size: 1rem;
+    background: #fff;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  }
+  
+  .btn-primary {
+    background: #007bff;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .btn-primary:hover {
+    background: #0069d9;
+  }
+  
+  .btn-block {
+    display: block;
+    width: 100%;
+  }
+  
+  .register-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #555;
+    font-size: 0.9rem;
+  }
+  
+  .login-link {
+    color: #007bff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .login-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  .bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.2;
+    z-index: 1;
+    filter: blur(30px);
+  }
+  
+  .shape-1 {
+    background: #ced4da;
+    width: 200px;
+    height: 200px;
+    top: -50px;
+    right: 10%;
+  }
+  
+  .shape-2 {
+    background: #ced4da;
+    width: 150px;
+    height: 150px;
+    bottom: -50px;
+    left: 10%;
+  }
+  
+  .shape-3 {
+    background: #ced4da;
+    width: 100px;
+    height: 100px;
+    top: 40%;
+    left: 80%;
+  }
+  
+  @media (max-width: 576px) {
+    .register-box {
+      padding: 1.5rem;
+    }
+    
+    .register-box h2 {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}

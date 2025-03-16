@@ -1,0 +1,66 @@
+/* styles.css */
+
+/* Basic body styling */
+body {
+    background-color: #fbfbfb;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Container styling */
+  .container {
+    margin-top: 20px;
+  }
+  
+  /* Navbar styling */
+  .navbar {
+    margin-bottom: 20px;
+    background-color: rgb(193, 223, 242) !important;
+  }
+  
+  /* Card styling for dashboard items */
+  .card {
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  /* Table styling */
+  .table {
+    background-color: #ffffff;
+    margin-top: 20px;
+    border-width: 7px;
+  }
+  
+  /* Footer styling (if needed) */
+  footer {
+    padding: 20px 0;
+    text-align: center;
+    background-color: #e9ecef;
+  }
+  
+/* Floating Chat Widget */
+.chat-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 60px;
+  height: 60px;
+  background-color: #007bff; /* Change the color as needed */
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.chat-widget img {
+  width: 70%;
+  height: 70%;
+}
+
+.chat-widget:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
