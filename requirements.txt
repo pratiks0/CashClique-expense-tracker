@@ -112,7 +112,7 @@ Pygments==2.19.1
 python-dateutil==2.9.0.post0
 python-json-logger==3.3.0
 pytz==2025.1
-pywin32==309
+#pywin32==309
 pywinpty==2.0.15
 PyYAML==6.0.2
 pyzmq==26.3.0
