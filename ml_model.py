@@ -3,11 +3,23 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
-# Ensure NLTK resources are downloaded (if not done elsewhere)
-nltk.download('punkt')
-nltk.download('stopwords')
+# Check and download necessary NLTK resources
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
 
-# Load the model and vectorizer (make sure these files exist from your training notebook)
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
+
+try:
+    nltk.data.find('tokenizers/punkt_tab/english')
+except LookupError:
+    nltk.download('punkt_tab')
+
+# Load the model and vectorizer (ensure these files exist from your training process)
 model = joblib.load('models/expense_classifier.pkl')
 vectorizer = joblib.load('models/vectorizer.pkl')
 
