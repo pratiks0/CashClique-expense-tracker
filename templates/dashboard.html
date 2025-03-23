@@ -27,13 +27,13 @@
     </div>
     
     <!-- Action Buttons -->
-    <div class="action-buttons" style="text-align: center; margin-bottom: 1.5rem;">
-      <a href="{{ url_for('add_income') }}" class="btn btn-success" style="margin-right: 10px;">Add Income</a>
-      <a href="{{ url_for('add_expense') }}" class="btn btn-primary" style="margin-right: 10px;">Add Expenses</a>
+    <div class="action-buttons text-center mb-3">
+      <a href="{{ url_for('add_income') }}" class="btn btn-success me-2">Add Income</a>
+      <a href="{{ url_for('add_expense') }}" class="btn btn-primary me-2">Add Expense</a>
     </div>
     
     <!-- Reset Button -->
-    <div class="reset-container">
+    <div class="reset-container text-center mb-3">
       <form action="{{ url_for('reset') }}" method="POST">
         <button type="submit" class="btn btn-reset">Reset All Income and Expenses</button>
       </form>
@@ -47,32 +47,34 @@
     <!-- Expenses Table -->
     <div class="expenses-container">
       <h3>Expenses</h3>
-      <table class="expenses-table">
-        <thead>
-          <tr>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for expense in expenses %}
-          <tr>
-            <td>{{ expense.raw_text }}</td>
-            <td>{{ expense.category }}</td>
-            <td>₹{{ expense.amount }}</td>
-            <td>{{ expense.timestamp.strftime('%Y-%m-%d') }}</td>
-            <td>
-              <form action="{{ url_for('delete_expense', expense_id=expense.id) }}" method="POST" style="display:inline;">
-                <button type="submit" class="btn btn-delete">Delete</button>
-              </form>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table expenses-table">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for expense in expenses %}
+            <tr>
+              <td>{{ expense.raw_text }}</td>
+              <td>{{ expense.category }}</td>
+              <td>₹{{ expense.amount }}</td>
+              <td>{{ expense.timestamp.strftime('%Y-%m-%d') }}</td>
+              <td>
+                <form action="{{ url_for('delete_expense', expense_id=expense.id) }}" method="POST" style="display:inline;">
+                  <button type="submit" class="btn btn-delete">Delete</button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
     
   </div>
@@ -159,10 +161,9 @@
     color: #333;
   }
   
-  /* Reset Button */
-  .reset-container {
-    text-align: center;
-    margin-bottom: 2rem;
+  /* Action and Reset Buttons */
+  .action-buttons a, .reset-container button {
+    min-width: 150px;
   }
   
   .btn-reset {
@@ -273,6 +274,11 @@
     .card-container {
       flex-direction: column;
       align-items: center;
+    }
+    
+    .action-buttons a, .reset-container button {
+      margin-bottom: 1rem;
+      width: 100%;
     }
   }
 </style>

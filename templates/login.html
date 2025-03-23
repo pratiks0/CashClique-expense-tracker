@@ -4,7 +4,7 @@
   <div class="login-box">
     <h2>Welcome Back</h2>
     <p class="subtitle">Login to access your financial dashboard</p>
-    
+
     <form method="POST" action="" class="login-form">
       {{ form.hidden_tag() }}
       <div class="form-group">
@@ -29,14 +29,14 @@
       </div>
       {{ form.submit(class="btn btn-primary btn-block") }}
     </form>
-    
+
     <div class="login-footer">
       <p>Don't have an account? <a href="{{ url_for('register') }}" class="register-link">Register now</a></p>
     </div>
   </div>
 </div>
 
-<!-- Minimalist Background Shapes -->
+<!-- Background Shapes -->
 <div class="bg-shape shape-1"></div>
 <div class="bg-shape shape-2"></div>
 <div class="bg-shape shape-3"></div>
@@ -52,25 +52,25 @@
     overflow: hidden;
     padding: 2rem 1rem;
   }
-  
+
   .login-box {
     background: #fff;
     border-radius: 12px;
     padding: 2rem;
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     position: relative;
     z-index: 10;
     border: 1px solid #e0e0e0;
     animation: fadeIn 0.5s ease-out;
   }
-  
+
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  
+
   .login-box h2 {
     font-size: 2rem;
     color: #333;
@@ -78,117 +78,118 @@
     text-align: center;
     font-weight: 600;
   }
-  
+
   .subtitle {
     color: #555;
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 1rem;
   }
-  
+
   .login-form {
     margin-top: 1rem;
   }
-  
+
   .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
   }
-  
+
   .form-control-label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     font-weight: 500;
     color: #555;
     font-size: 0.95rem;
   }
-  
+
   .input-wrapper {
     position: relative;
   }
-  
+
   .input-icon {
     position: absolute;
-    left: 15px;
+    left: 12px;
     top: 50%;
     transform: translateY(-50%);
     color: #888;
     font-size: 1rem;
   }
-  
+
   .form-control {
     width: 100%;
-    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
     border-radius: 8px;
     border: 1px solid #e0e0e0;
     font-size: 1rem;
     background: #fff;
     transition: border-color 0.3s ease;
   }
-  
+
   .form-control:focus {
     outline: none;
     border-color: #007bff;
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
   }
-  
+
   .form-options {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     font-size: 0.9rem;
   }
-  
+
   .remember-me {
     display: flex;
     align-items: center;
   }
-  
+
   .remember-me input {
     margin-right: 0.5rem;
   }
-  
+
   .btn-primary {
     background: #007bff;
     border: none;
     padding: 0.75rem 2rem;
     font-size: 1rem;
     font-weight: 500;
-    border-radius: 4px;
-    transition: background 0.3s ease;
+    border-radius: 6px;
+    transition: background 0.3s ease, transform 0.2s;
     color: #fff;
     cursor: pointer;
     width: 100%;
   }
-  
+
   .btn-primary:hover {
     background: #0069d9;
+    transform: translateY(-2px);
   }
-  
+
   .btn-block {
     display: block;
     width: 100%;
   }
-  
+
   .login-footer {
     text-align: center;
     margin-top: 1.5rem;
     color: #555;
     font-size: 0.9rem;
   }
-  
+
   .register-link {
     color: #007bff;
     font-weight: 500;
     text-decoration: none;
     transition: color 0.3s;
   }
-  
+
   .register-link:hover {
     color: #0056b3;
     text-decoration: underline;
   }
-  
+
   .bg-shape {
     position: absolute;
     border-radius: 50%;
@@ -196,44 +197,80 @@
     z-index: 1;
     filter: blur(30px);
   }
-  
+
   .shape-1 {
     background: #ced4da;
-    width: 200px;
-    height: 200px;
-    top: -50px;
-    right: 10%;
+    width: 180px;
+    height: 180px;
+    top: -40px;
+    right: 8%;
   }
-  
+
   .shape-2 {
     background: #ced4da;
-    width: 150px;
-    height: 150px;
-    bottom: -50px;
-    left: 10%;
+    width: 140px;
+    height: 140px;
+    bottom: -40px;
+    left: 8%;
   }
-  
+
   .shape-3 {
     background: #ced4da;
     width: 100px;
     height: 100px;
-    top: 40%;
-    left: 80%;
+    top: 35%;
+    left: 75%;
   }
-  
-  @media (max-width: 576px) {
+
+  @media (max-width: 768px) {
     .login-box {
-      padding: 1.5rem;
+      max-width: 400px;
+      padding: 1.75rem;
     }
-    
+
     .login-box h2 {
       font-size: 1.8rem;
     }
-    
+
     .form-options {
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.75rem;
+      gap: 0.6rem;
+    }
+
+    .form-control {
+      padding: 0.7rem 1rem 0.7rem 2.3rem;
+    }
+
+    .btn-primary {
+      padding: 0.7rem 1.75rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .login-box {
+      padding: 1.5rem;
+      max-width: 350px;
+    }
+
+    .login-box h2 {
+      font-size: 1.6rem;
+    }
+
+    .form-options {
+      gap: 0.5rem;
+    }
+
+    .form-control {
+      padding: 0.65rem 1rem 0.65rem 2.2rem;
+    }
+
+    .btn-primary {
+      padding: 0.65rem 1.5rem;
+    }
+
+    .bg-shape {
+      display: none; /* Hide background shapes on smaller screens */
     }
   }
 </style>
