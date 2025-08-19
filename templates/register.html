@@ -50,9 +50,9 @@
 <div class="bg-shape shape-3"></div>
 
 <style>
-  /* General Styles */
+  /* Dark Theme Container */
   .register-container {
-    background: #f8f9fa;
+    background: linear-gradient(135deg, #0b0f1a, #111827);
     min-height: 88vh;
     display: flex;
     justify-content: center;
@@ -60,18 +60,19 @@
     position: relative;
     overflow: hidden;
     padding: 2rem 1rem;
+    color: #e5e7eb;
   }
   
   .register-box {
-    background: #fff;
+    background: #1f2937;
     border-radius: 12px;
     padding: 2rem;
     width: 100%;
     max-width: 450px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 10;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #374151;
     animation: fadeIn 0.5s ease-out;
   }
   
@@ -82,21 +83,17 @@
   
   .register-box h2 {
     font-size: 2rem;
-    color: #333;
+    color: #f9fafb;
     margin-bottom: 0.5rem;
     text-align: center;
     font-weight: 600;
   }
   
   .subtitle {
-    color: #555;
+    color: #9ca3af;
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 1rem;
-  }
-  
-  .register-form {
-    margin-top: 1rem;
   }
   
   .form-group {
@@ -107,7 +104,7 @@
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: #555;
+    color: #d1d5db;
     font-size: 0.95rem;
   }
   
@@ -120,7 +117,7 @@
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #888;
+    color: #9ca3af;
     font-size: 1rem;
   }
   
@@ -128,20 +125,25 @@
     width: 100%;
     padding: 0.8rem 1rem 0.8rem 2.5rem;
     border-radius: 8px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #374151;
     font-size: 1rem;
-    background: #fff;
-    transition: border-color 0.3s ease;
+    background: #111827;
+    color: #f9fafb;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .form-control::placeholder {
+    color: #6b7280;
   }
   
   .form-control:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
   }
   
   .btn-primary {
-    background: #007bff;
+    background: #3b82f6;
     border: none;
     padding: 0.75rem;
     font-size: 1rem;
@@ -154,7 +156,7 @@
   }
   
   .btn-primary:hover {
-    background: #0069d9;
+    background: #2563eb;
   }
   
   .btn-block {
@@ -165,19 +167,19 @@
   .register-footer {
     text-align: center;
     margin-top: 1.5rem;
-    color: #555;
+    color: #9ca3af;
     font-size: 0.9rem;
   }
   
   .login-link {
-    color: #007bff;
+    color: #3b82f6;
     font-weight: 500;
     text-decoration: none;
     transition: color 0.3s;
   }
   
   .login-link:hover {
-    color: #0056b3;
+    color: #2563eb;
     text-decoration: underline;
   }
   
@@ -185,91 +187,46 @@
   .bg-shape {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.2;
+    opacity: 0.1;
     z-index: 1;
-    filter: blur(30px);
+    filter: blur(40px);
   }
   
   .shape-1 {
-    background: #ced4da;
-    width: 180px;
-    height: 180px;
+    background: #3b82f6;
+    width: 200px;
+    height: 200px;
     top: -50px;
     right: 10%;
   }
   
   .shape-2 {
-    background: #ced4da;
-    width: 140px;
-    height: 140px;
+    background: #9333ea;
+    width: 160px;
+    height: 160px;
     bottom: -50px;
     left: 10%;
   }
   
   .shape-3 {
-    background: #ced4da;
-    width: 90px;
-    height: 90px;
+    background: #ef4444;
+    width: 120px;
+    height: 120px;
     top: 40%;
     left: 80%;
   }
   
-  /* Responsive Design */
+  /* Responsive */
   @media (max-width: 768px) {
     .register-box {
       max-width: 90%;
       padding: 1.5rem;
     }
-    
-    .register-box h2 {
-      font-size: 1.8rem;
-    }
-
-    .subtitle {
-      font-size: 0.95rem;
-    }
-
-    .form-control {
-      font-size: 0.95rem;
-      padding: 0.7rem 1rem 0.7rem 2.5rem;
-    }
-
-    .btn-primary {
-      font-size: 0.95rem;
-      padding: 0.7rem;
-    }
-
-    .shape-1 {
-      width: 120px;
-      height: 120px;
-      right: 5%;
-    }
-
-    .shape-2 {
-      width: 100px;
-      height: 100px;
-      left: 5%;
-    }
-
-    .shape-3 {
-      width: 70px;
-      height: 70px;
-      left: 75%;
-    }
+    .register-box h2 { font-size: 1.8rem; }
   }
-
+  
   @media (max-width: 480px) {
-    .register-box h2 {
-      font-size: 1.6rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.2rem;
-    }
-
-    .register-footer {
-      font-size: 0.85rem;
-    }
+    .register-box h2 { font-size: 1.6rem; }
   }
 </style>
 

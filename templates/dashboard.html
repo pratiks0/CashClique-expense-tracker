@@ -4,7 +4,7 @@
   <div class="dashboard-box">
     <h2 class="dashboard-title">Dashboard</h2>
     
-    <!-- Minimalist Totals Section -->
+    <!-- Totals Section -->
     <div class="card-container">
       <div class="dashboard-card">
         <div class="card-header">Total Income</div>
@@ -80,205 +80,210 @@
   </div>
 </div>
 
-<!-- Background elements for subtle visual interest -->
-<div class="bg-shape shape-1"></div>
-<div class="bg-shape shape-2"></div>
-<div class="bg-shape shape-3"></div>
-
 <style>
-  /* Minimalist Container and Box */
+  /* Background */
+  body {
+    background: #0d0d10;
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+  }
+
   .dashboard-container {
-    background: #f8f9fa;
-    min-height: 88vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding: 3rem 1rem;
     position: relative;
-    padding: 2rem 1rem;
+    overflow: hidden;
   }
-  
+
+  /* Dashboard Box */
   .dashboard-box {
-    background-color: #ffffff;
-    border-radius: 12px;
+    background: rgba(26, 26, 31, 0.85);
+    border-radius: 20px;
     padding: 2rem;
     width: 100%;
-    max-width: 900px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    position: relative;
-    z-index: 10;
-    border: 1px solid #e0e0e0;
-    animation: fadeIn 0.5s ease-out;
+    max-width: 1000px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    animation: fadeIn 0.6s ease-out;
   }
-  
+
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  
+
   .dashboard-title {
     text-align: center;
     font-size: 2rem;
-    color: #333;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2rem;
   }
-  
-  /* Minimalist Totals Cards */
+
+  /* Cards */
   .card-container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
-  
+
   .dashboard-card {
     flex: 1;
     min-width: 250px;
-    background-color: #fafafa;
-    border-radius: 8px;
-    padding: 1rem;
+    background: rgba(40, 40, 50, 0.7);
+    border-radius: 16px;
+    padding: 1.5rem;
     text-align: center;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-    transition: transform 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  
+
   .dashboard-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(130, 87, 229, 0.5);
   }
-  
+
   .card-header {
     font-size: 1rem;
     font-weight: 500;
+    color: #aaa;
     margin-bottom: 0.5rem;
-    color: #666;
   }
-  
+
   .card-value {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    color: #333;
+    color: #fff;
   }
-  
-  /* Action and Reset Buttons */
-  .action-buttons a, .reset-container button {
-    min-width: 150px;
-  }
-  
+
+  /* Buttons */
+  .action-buttons a,
   .btn-reset {
-    background: #dc3545;
-    border: none;
-    padding: 0.75rem 2rem;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 4px;
-    transition: background 0.3s ease;
+    display: inline-block;
+    min-width: 160px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
     color: #fff;
     cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0.5rem;
   }
-  
+
+  .btn-success {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+  }
+
+  .btn-success:hover {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+
+  .btn-reset {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border: none;
+  }
+
   .btn-reset:hover {
-    background: #c82333;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
   }
-  
-  /* Chart Section */
-  .chart-container {
-    margin: 2rem auto;
-    max-width: 800px;
-  }
-  
-  /* Expenses Table */
-  .expenses-container {
-    margin-top: 2rem;
-  }
-  
-  .expenses-container h3 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  
-  .expenses-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-  }
-  
-  .expenses-table th, .expenses-table td {
-    padding: 0.75rem;
-    border: 1px solid #e0e0e0;
-    text-align: center;
-  }
-  
+
   .btn-delete {
-    background: #dc3545;
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
     border: none;
     padding: 0.5rem 1rem;
-    font-size: 0.9rem;
+    border-radius: 8px;
     font-weight: 500;
-    border-radius: 4px;
-    transition: background 0.3s ease;
     color: #fff;
-    cursor: pointer;
+    transition: all 0.3s ease;
   }
-  
+
   .btn-delete:hover {
-    background: #c82333;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
   }
-  
-  /* Minimalist Decorative Background Shapes */
-  .bg-shape {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.2;
-    z-index: 1;
-    filter: blur(30px);
+
+  /* Chart */
+  .chart-container {
+    margin: 2rem auto;
+    max-width: 850px;
+    background: rgba(40, 40, 50, 0.7);
+    border-radius: 16px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
-  
-  .shape-1 {
-    background: #ced4da;
-    width: 200px;
-    height: 200px;
-    top: -50px;
-    right: 10%;
-  }
-  
-  .shape-2 {
-    background: #ced4da;
-    width: 150px;
-    height: 150px;
-    bottom: -50px;
-    left: 10%;
-  }
-  
-  .shape-3 {
-    background: #ced4da;
-    width: 100px;
-    height: 100px;
-    top: 40%;
-    left: 80%;
-  }
-  
-  /* Responsive Adjustments */
+
+  /* Table */
+.expenses-container {
+  margin-top: 2rem;
+}
+
+.expenses-container h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.expenses-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background: rgba(88, 83, 83, 0.85); /* darker base */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.expenses-table th,
+.expenses-table td {
+  padding: 0.9rem;
+  text-align: center;
+  color: #000000; /* light gray text */
+}
+
+.expenses-table th {
+  background: rgba(255, 255, 255, 0.05);
+  color: #bbb;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.expenses-table tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.expenses-table tr:last-child {
+  border-bottom: none;
+}
+
+.expenses-table tr:hover {
+  background: rgba(130, 87, 229, 0.15); /* purple highlight on hover */
+}
+
+
+  /* Responsive */
   @media (max-width: 576px) {
-    .dashboard-box {
-      padding: 1.5rem;
-    }
-    
-    .dashboard-title {
-      font-size: 1.5rem;
-    }
-    
     .card-container {
       flex-direction: column;
-      align-items: center;
     }
-    
     .action-buttons a, .reset-container button {
-      margin-bottom: 1rem;
       width: 100%;
+      margin-bottom: 1rem;
     }
   }
 </style>
@@ -288,23 +293,17 @@
 <!-- Load Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // Parse Jinja variables into JavaScript arrays
   var labels = JSON.parse('{{ category_totals.keys() | list | tojson | safe }}');
   var datasetData = JSON.parse('{{ category_totals.values() | list | tojson | safe }}');
 
-  // Predefined colors for different categories
-  var baseColors = [
-      'rgba(99, 132, 255, 0.6)',
-      'rgba(54, 162, 235, 0.6)',
-      'rgba(255, 206, 86, 0.6)',
-      'rgba(75, 192, 192, 0.6)',
-      'rgba(153, 102, 255, 0.6)',
-      'rgba(255, 159, 64, 0.6)'
+  var colors = [
+      'rgba(130, 87, 229, 0.8)',
+      'rgba(59, 130, 246, 0.8)',
+      'rgba(16, 185, 129, 0.8)',
+      'rgba(251, 191, 36, 0.8)',
+      'rgba(244, 63, 94, 0.8)',
+      'rgba(236, 72, 153, 0.8)'
   ];
-
-  var colors = labels.map(function(label, index) {
-      return baseColors[index % baseColors.length];
-  });
 
   var data = {
     labels: labels,
@@ -312,10 +311,9 @@
       label: 'Expense Amount',
       data: datasetData,
       backgroundColor: colors,
-      borderColor: colors.map(function(c) {
-          return c.replace('0.6', '1');
-      }),
-      borderWidth: 1
+      borderColor: colors.map(c => c.replace('0.8','1')),
+      borderWidth: 1,
+      borderRadius: 6
     }]
   };
 
@@ -324,10 +322,12 @@
     type: 'bar',
     data: data,
     options: {
+      plugins: {
+        legend: { labels: { color: "#ccc" } }
+      },
       scales: {
-        y: {
-          beginAtZero: true
-        }
+        x: { ticks: { color: "#aaa" }, grid: { color: "rgba(255,255,255,0.05)" } },
+        y: { ticks: { color: "#aaa" }, grid: { color: "rgba(255,255,255,0.05)" }, beginAtZero: true }
       }
     }
   });
